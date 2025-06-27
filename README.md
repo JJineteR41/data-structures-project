@@ -30,20 +30,20 @@ El sistema actualmente implementa un **buzón de sugerencias** que utiliza una *
 
 En el momento, la estructura del proyecto es la siguiente:
 
-src/
-└── org.example.interf/
-    ├── HelloApplication.java        # Clase principal (punto de entrada)
-    ├── InicioController.java        # Controlador de la pantalla principal
-    ├── SugerenciasController.java   # Lógica del buzón de sugerencias
-    ├── PersistenciaSugerencias.java # Clase que maneja lectura y escritura en archivo
-    ├── Cola.java                    # Implementación de la estructura de cola
-    ├── Nodo.java                    # Nodo genérico usado en la cola
-resources/
-└── org/example/interf/
-    ├── inicio-view.fxml             # Interfaz de inicio
-    └── sugerencias-view.fxml        # Interfaz del buzón
-data/
-└── sugerencias.txt                  # Archivo de persistencia
+```src/
+   └── org.example.interf/
+       ├── HelloApplication.java        # Clase principal (punto de entrada)
+       ├── InicioController.java        # Controlador de la pantalla principal
+       ├── SugerenciasController.java   # Lógica del buzón de sugerencias
+       ├── PersistenciaSugerencias.java # Clase que maneja lectura y escritura en archivo
+       ├── Cola.java                    # Implementación de la estructura de cola
+       ├── Nodo.java                    # Nodo genérico usado en la cola
+   resources/
+   └── org/example/interf/
+       ├── inicio-view.fxml             # Interfaz de inicio
+       └── sugerencias-view.fxml        # Interfaz del buzón
+   data/
+   └── sugerencias.txt                  # Archivo de persistencia```
 
 ## Autores:
 
