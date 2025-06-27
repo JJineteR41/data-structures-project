@@ -43,7 +43,8 @@ En el momento, la estructura del proyecto es la siguiente:
        ├── inicio-view.fxml             # Interfaz de inicio
        └── sugerencias-view.fxml        # Interfaz del buzón
    data/
-   └── sugerencias.txt                  # Archivo de persistencia```
+   └── sugerencias.txt                  # Archivo de persistencia 
+```
 
 ## Autores:
 
