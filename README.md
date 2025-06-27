@@ -30,7 +30,8 @@ El sistema actualmente implementa un **buzón de sugerencias** que utiliza una *
 
 En el momento, la estructura del proyecto es la siguiente:
 
-```src/
+```
+   src/
    └── org.example.interf/
        ├── HelloApplication.java        # Clase principal (punto de entrada)
        ├── InicioController.java        # Controlador de la pantalla principal
