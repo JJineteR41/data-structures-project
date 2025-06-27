@@ -20,7 +20,7 @@ El sistema actualmente implementa un **buzón de sugerencias** que utiliza una *
 1. Clona el repositorio:
 
    ```bash
-   git clone https://github.com/tu-usuario/nombre-del-repo.git
+   git clone https://github.com/JJineteR41/data-structures-project
 
 2. Abre el Proyecto en tu IDE de preferencia; nosotros utilizamos IntelliJ IDEA en su versión Community Edition.
 3. Asegúrate de tener configurado JavaFX en tu entorno. En IntelliJ puedes revisar File → Project Structure → Libraries)
