@@ -1,0 +1,2 @@
+Esta es la primera sugerencia que ingresamos en el buzón, debería poder seguir aquí luego de cerrar la app si la persistencia quedó bien configurada
+La persistencia está funcionado correctamente, al reiniciar la aplicación aparece la primera sugerencia y esta que confirma el buen funcionamiento -Julián.

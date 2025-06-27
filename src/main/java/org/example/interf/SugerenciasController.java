@@ -16,6 +16,14 @@ public class SugerenciasController {
     private Cola<String> cola = new Cola<>();
 
     @FXML
+    public void initialize() {
+        for (String s : PersistenciaSugerencias.cargarSugerencias()) {
+            cola.enqueue(s);
+        }
+        actualizarVista();
+    }
+
+    @FXML
     protected void agregarSugerencia() {
         String sugerencia = campoSugerencia.getText().trim();
 
@@ -27,6 +35,7 @@ public class SugerenciasController {
         cola.enqueue(sugerencia);
         campoSugerencia.clear();
         actualizarVista();
+        PersistenciaSugerencias.guardarSugerencias(cola.toList()); //Julián: Esto guarda las sugerencias luego de agregar alguna
     }
 
     @FXML
@@ -50,6 +59,7 @@ public class SugerenciasController {
         String eliminada = cola.dequeue();
         mostrarAlerta("Sugerencia eliminada", "Se eliminó: " + eliminada);
         actualizarVista();
+        PersistenciaSugerencias.guardarSugerencias(cola.toList()); //Julián: Esto guarda las sugerencias luego de eliminar alguna
     }
 
     private void actualizarVista() {
