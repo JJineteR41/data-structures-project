@@ -24,7 +24,8 @@ El sistema actualmente implementa un **buzón de sugerencias** que utiliza una *
 
 2. Abre el Proyecto en tu IDE de preferencia; nosotros utilizamos IntelliJ IDEA en su versión Community Edition.
 3. Asegúrate de tener configurado JavaFX en tu entorno. En IntelliJ puedes revisar File → Project Structure → Libraries)
-4. Ejecuta la clase HelloApplication para iniciar la aplicación.
+4. Por el momento la versión actual de la aplicación está ubicada en la rama 'master'
+5. Ejecuta la clase HelloApplication para iniciar la aplicación.
 
 ## Estructura del Proyecto:
 
