@@ -8,6 +8,8 @@ import javafx.stage.Stage;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 
+import java.io.IOException;
+
 public class InicioController {
 
     @FXML
@@ -40,5 +42,14 @@ public class InicioController {
             e.printStackTrace();
         }
     }
+    @FXML
+    private void irATareas(ActionEvent event) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("tareas-view.fxml"));
+        Parent root = fxmlLoader.load();
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(new Scene(root));
+        stage.show();
+    }
+
 
 }

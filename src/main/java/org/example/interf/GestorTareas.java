@@ -40,7 +40,32 @@ public class GestorTareas {
 
     // Eliminamos una tarea específica
     public boolean eliminarTarea(Tarea tarea) {
-        return tareasPendientes.eliminar(tarea);
+        if (tarea.isCompletada()) {
+            // Si la tarea está completada, eliminar de la lista de tareasCompletadas
+            return tareasCompletadas.remove(tarea);
+        } else {
+            // Si está pendiente, eliminar del heap
+            List<Tarea> temporal = new ArrayList<>();
+            boolean eliminada = false;
+
+            while (!tareasPendientes.isEmpty()) {
+                Tarea actual = tareasPendientes.extraerMinimo(); // extraerMinimo porque así no dejas residuos
+
+                if (!eliminada && actual.equals(tarea)) {
+                    eliminada = true;
+                    continue; // No la volvemos a insertar
+                }
+
+                temporal.add(actual);
+            }
+
+            // Volver a insertar las tareas no eliminadas
+            for (Tarea t : temporal) {
+                tareasPendientes.insertar(t);
+            }
+
+            return eliminada;
+        }
     }
 
     // Marcamos una tarea como completada sin seguir el orden de prioridad

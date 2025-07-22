@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<BorderPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml"
+            fx:controller="org.example.interf.TareasController">
+
+    <top>
+        <VBox spacing="10">
+            <padding>
+                <Insets top="10" right="10" bottom="10" left="10"/>
+            </padding>
+            <Label text="Gestión de Tareas"/>
+
+            <HBox spacing="10">
+                <TextField fx:id="descripcionField" promptText="Descripción" />
+                <TextField fx:id="prioridadField" promptText="Prioridad (1 = alta)" />
+                <TextField fx:id="categoriaField" promptText="Categoría (opcional)" />
+                <Button text="Agregar Tarea" onAction="#agregarTarea" />
+            </HBox>
+        </VBox>
+    </top>
+
+    <center>
+        <TableView fx:id="tareasTable">
+            <columns>
+                <TableColumn fx:id="descripcionColumn" text="Descripción" prefWidth="200"/>
+                <TableColumn fx:id="prioridadColumn" text="Prioridad" prefWidth="100"/>
+                <TableColumn fx:id="categoriaColumn" text="Categoría" prefWidth="150"/>
+                <TableColumn fx:id="completadaColumn" text="¿Completada?" prefWidth="120"/>
+            </columns>
+        </TableView>
+    </center>
+
+    <bottom>
+        <VBox spacing="10">
+            <padding>
+                <Insets top="10" right="10" bottom="10" left="10"/>
+            </padding>
+
+            <HBox spacing="10" alignment="center">
+                <Button text="Marcar como Completada" onAction="#completarTareaSeleccionada" />
+                <Button text="Eliminar Tarea" onAction="#eliminarTareaSeleccionada"
+                        style="-fx-background-color: #e74c3c; -fx-text-fill: white; -fx-font-size: 14px; -fx-background-radius: 10;" />
+            </HBox>
+
+            <HBox spacing="10" alignment="center">
+                <Button text="Volver al Menú Principal"
+                        onAction="#volverAlInicio"
+                        style="-fx-background-color: #95a5a6; -fx-text-fill: white; -fx-font-size: 14px; -fx-background-radius: 10;" />
+            </HBox>
+        </VBox>
+    </bottom>
+
+</BorderPane>
