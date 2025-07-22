@@ -2,21 +2,35 @@ package org.example.interf;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class GestorTareas {
     private HeapPrioridad<Tarea> tareasPendientes;
     private List<Tarea> tareasCompletadas;
+    private boolean autoGuardado; // Control para habilitar/deshabilitar autoguardado
 
     public GestorTareas() {
+        this(true); // Por defecto con autoguardado habilitado
+    }
+
+    public GestorTareas(boolean autoGuardado) {
         this.tareasPendientes = new HeapPrioridad<>();
         this.tareasCompletadas = new ArrayList<>();
+        this.autoGuardado = autoGuardado;
+
+        // Cargamos datos existentes si hay
+        if (autoGuardado && PersistenciaTareas.existenDatos()) {
+            cargarDatos();
+        }
     }
 
     // Agregamos una nueva tarea
     public void agregarTarea(String descripcion, int prioridad, String categoria) {
         Tarea nuevaTarea = new Tarea(descripcion, prioridad, categoria);
         tareasPendientes.insertar(nuevaTarea);
+
+        if (autoGuardado) {
+            guardarDatos();
+        }
     }
 
     public void agregarTarea(String descripcion, int prioridad) {
@@ -34,38 +48,23 @@ public class GestorTareas {
         if (tarea != null) {
             tarea.setCompletada(true);
             tareasCompletadas.add(tarea);
+
+            if (autoGuardado) {
+                guardarDatos();
+            }
         }
         return tarea;
     }
 
     // Eliminamos una tarea específica
     public boolean eliminarTarea(Tarea tarea) {
-        if (tarea.isCompletada()) {
-            // Si la tarea está completada, eliminar de la lista de tareasCompletadas
-            return tareasCompletadas.remove(tarea);
-        } else {
-            // Si está pendiente, eliminar del heap
-            List<Tarea> temporal = new ArrayList<>();
-            boolean eliminada = false;
+        boolean eliminada = tareasPendientes.eliminar(tarea);
 
-            while (!tareasPendientes.isEmpty()) {
-                Tarea actual = tareasPendientes.extraerMinimo(); // extraerMinimo porque así no dejas residuos
-
-                if (!eliminada && actual.equals(tarea)) {
-                    eliminada = true;
-                    continue; // No la volvemos a insertar
-                }
-
-                temporal.add(actual);
-            }
-
-            // Volver a insertar las tareas no eliminadas
-            for (Tarea t : temporal) {
-                tareasPendientes.insertar(t);
-            }
-
-            return eliminada;
+        if (eliminada && autoGuardado) {
+            guardarDatos();
         }
+
+        return eliminada;
     }
 
     // Marcamos una tarea como completada sin seguir el orden de prioridad
@@ -73,6 +72,10 @@ public class GestorTareas {
         if (tareasPendientes.eliminar(tarea)) {
             tarea.setCompletada(true);
             tareasCompletadas.add(tarea);
+
+            if (autoGuardado) {
+                guardarDatos();
+            }
             return true;
         }
         return false;
@@ -88,7 +91,7 @@ public class GestorTareas {
         return new ArrayList<>(tareasCompletadas);
     }
 
-    // Obtenemos tareas por categoría
+    // Obtenemos las tareas por categoría
     public List<Tarea> obtenerTareasPorCategoria(String categoria) {
         List<Tarea> resultado = new ArrayList<>();
 
@@ -103,7 +106,7 @@ public class GestorTareas {
         return resultado;
     }
 
-    // Obtenemos las estadísticas relacionadas a la tarea
+    // Obtenemos las estadísticas
     public EstadisticasTareas obtenerEstadisticas() {
         return new EstadisticasTareas(
                 tareasPendientes.size(),
@@ -152,14 +155,68 @@ public class GestorTareas {
     public void limpiarTodas() {
         tareasPendientes.limpiar();
         tareasCompletadas.clear();
+
+        if (autoGuardado) {
+            guardarDatos();
+        }
     }
 
     // Limpiamos solo las tareas completadas
     public void limpiarTareasCompletadas() {
         tareasCompletadas.clear();
+
+        if (autoGuardado) {
+            guardarDatos();
+        }
     }
 
-    // Imprimimos el reporte de tareas
+    // === MÉTODOS DE PERSISTENCIA ===
+
+    /**
+     * Guardamos los datos en archivos txt
+     */
+    public void guardarDatos() {
+        PersistenciaTareas.guardarTareas(this);
+    }
+
+    /**
+     * Cargamos los datos desde archivos
+     */
+    public void cargarDatos() {
+        PersistenciaTareas.cargarTareas(this);
+    }
+
+    /**
+     * Habilitamos o deshabilitamos el autoguardado
+     */
+    public void setAutoGuardado(boolean autoGuardado) {
+        this.autoGuardado = autoGuardado;
+    }
+
+    /**
+     * Verificamos si el autoguardado está habilitado
+     */
+    public boolean isAutoGuardadoHabilitado() {
+        return autoGuardado;
+    }
+
+    /**
+     * Hacemos una copia de seguridad de los datos actuales
+     */
+    public void hacerBackup() {
+        PersistenciaTareas.hacerBackup();
+    }
+
+    /**
+     * Reseteamos completamente el sistema (elimina archivos y limpia memoria)
+     */
+    public void resetearSistema() {
+        limpiarTodas();
+        PersistenciaTareas.limpiarArchivos();
+        System.out.println("Sistema de tareas reseteado completamente.");
+    }
+
+    // Imprimimos reporte de tareas
     public void imprimirReporte() {
         System.out.println("\n=== REPORTE DE TAREAS DEL ENSAMBLE MUSICAL ===");
 
@@ -188,9 +245,11 @@ public class GestorTareas {
         System.out.println("Tareas completadas: " + stats.getTareasCompletadas());
         System.out.println("Total de tareas: " + (stats.getTareasPendientes() + stats.getTareasCompletadas()));
         System.out.println("Categorías: " + String.join(", ", stats.getCategorias()));
+        System.out.println("Autoguardado: " + (autoGuardado ? "Habilitado" : "Deshabilitado"));
+        System.out.println("=============================================\n");
     }
 
-    // Clase interna para las estadísticas de las tareas
+    // Clase interna para estadísticas
     public static class EstadisticasTareas {
         private int tareasPendientes;
         private int tareasCompletadas;
