@@ -162,7 +162,7 @@ public class GestorTareas {
         System.out.println("Tareas pendientes: " + stats.getTareasPendientes());
         System.out.println("Tareas completadas: " + stats.getTareasCompletadas());
         System.out.println("Total de tareas: " + (stats.getTareasPendientes() + stats.getTareasCompletadas()));
-        System.out.println("Categorías: " + String.join(", ", stats.getCategorias;
+        System.out.println("Categorías: " + String.join(", ", stats.getCategorias()));
     }
 
     // Clase interna para las estadísticas de las tareas
