@@ -1,5 +1,8 @@
 package org.example.interf;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class AVLTree<T extends Comparable<T>> extends BST<T> {
 
     public void printTreeHeight() {
@@ -38,7 +41,7 @@ public class AVLTree<T extends Comparable<T>> extends BST<T> {
         }
     }
 
-    private void deleteFirst() {
+    public void deleteFirst() {
         delete(minimum(this.root).getData());
     }
 
@@ -136,5 +139,17 @@ public class AVLTree<T extends Comparable<T>> extends BST<T> {
         node.height = 1 + (Math.max(leftHeight, rightHeight));
         //System.out.println(node.height);
         if (node.parent != null) adjustHeight(node.parent);
+    }
+    public List<T> getAllElementsSorted() {
+        List<T> elementos = new ArrayList<>();
+        inOrderTraversal(root, elementos);
+        return elementos;
+    }
+
+    private void inOrderTraversal(Node<T> node, List<T> lista) {
+        if (node == null) return;
+        inOrderTraversal(node.left, lista);
+        lista.add(node.data);
+        inOrderTraversal(node.right, lista);
     }
 }

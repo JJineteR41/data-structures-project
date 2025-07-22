@@ -23,4 +23,9 @@
     <Button text="Ir al Buzón de Sugerencias"
             onAction="#cambiarASugerencias"
             style="-fx-background-color: #3498db; -fx-text-fill: white; -fx-font-size: 14px; -fx-background-radius: 10;" />
+
+    <Button text="Ir al apartado de Eventos"
+            onAction="#abrirVistaEventos"
+            style="-fx-background-color: #2ecc71; -fx-text-fill: white; -fx-font-size: 14px; -fx-background-radius: 10;" />
+
 </VBox>

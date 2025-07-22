@@ -77,4 +77,17 @@ public class SugerenciasController {
         alerta.setContentText(mensaje);
         alerta.showAndWait();
     }
+    @FXML
+    private void volverAlMenu() {
+        try {
+            javafx.fxml.FXMLLoader loader = new javafx.fxml.FXMLLoader(getClass().getResource("/org/example/interf/inicio-view.fxml"));
+            javafx.scene.Parent root = loader.load();
+            javafx.stage.Stage stage = (javafx.stage.Stage) campoSugerencia.getScene().getWindow();
+            stage.setScene(new javafx.scene.Scene(root));
+        } catch (Exception e) {
+            e.printStackTrace();
+            mostrarAlerta("Error", "No se pudo cargar el menú principal.");
+        }
+    }
+
 }

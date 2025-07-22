@@ -43,4 +43,9 @@
               wrapText="true"
               editable="false"
               style="-fx-background-radius: 10; -fx-control-inner-background: #ffffff; -fx-font-size: 14px;"/>
+
+    <Button text="Volver al Menú Principal"
+            onAction="#volverAlMenu"
+            style="-fx-background-color: #7f8c8d; -fx-text-fill: white; -fx-background-radius: 8;"/>
+
 </VBox>

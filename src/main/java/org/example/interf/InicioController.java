@@ -25,4 +25,20 @@ public class InicioController {
             e.printStackTrace();
         }
     }
+    @FXML
+    private void abrirVistaEventos(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("eventos-view.fxml"));
+            Parent root = loader.load();
+
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            Scene nuevaEscena = new Scene(root);
+            stage.setScene(nuevaEscena);
+            stage.setTitle("Gestión de Eventos 🎼");
+            stage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
 }

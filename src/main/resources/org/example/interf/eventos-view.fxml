@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns="http://javafx.com/javafx/21"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="org.example.interf.EventosController"
+      alignment="TOP_CENTER"
+      spacing="15"
+      prefWidth="600"
+      prefHeight="520"
+      style="-fx-background-color: #f9f9f9;">
+
+    <padding>
+        <Insets top="20.0" right="20.0" bottom="20.0" left="20.0"/>
+    </padding>
+
+    <Label text="🎼 Gestión de Eventos"
+           style="-fx-font-size: 24px; -fx-text-fill: #2c3e50; -fx-font-weight: bold;" />
+
+    <HBox spacing="10">
+        <TextField fx:id="campoNombre" promptText="Nombre del evento" prefWidth="200"/>
+        <TextField fx:id="campoFecha" promptText="Fecha (dd/MM/yyyy)" prefWidth="200"/>
+        <Button fx:id="botonAgregar"
+                text="Agregar Evento"
+                onAction="#agregarEvento"
+                style="-fx-background-color: #27ae60; -fx-text-fill: white; -fx-font-size: 13px; -fx-background-radius: 8;" />
+    </HBox>
+
+    <TableView fx:id="tablaEventos" prefHeight="350" prefWidth="560">
+        <columns>
+            <TableColumn fx:id="columnaNombre"
+                         text="Evento"
+                         prefWidth="280"
+                         style="-fx-alignment: CENTER-LEFT;" />
+            <TableColumn fx:id="columnaFecha"
+                         text="Fecha"
+                         prefWidth="280"
+                         style="-fx-alignment: CENTER;" />
+        </columns>
+    </TableView>
+
+    <Button text="⏪ Volver al Inicio"
+            onAction="#volverAlInicio"
+            style="-fx-background-color: #3498db; -fx-text-fill: white; -fx-font-size: 13px; -fx-background-radius: 8;" />
+    <Button text="🗑 Eliminar primer evento"
+            onAction="#eliminarPrimerEvento"
+            style="-fx-background-color: #e74c3c; -fx-text-fill: white; -fx-font-size: 13px; -fx-background-radius: 8;" />
+
+</VBox>
