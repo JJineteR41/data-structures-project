@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns="http://javafx.com/javafx/21"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="org.example.interf.LoginController"
+      alignment="CENTER"
+      spacing="15"
+      style="-fx-background-color: #ecf0f1;"
+      prefWidth="500"
+      prefHeight="400">
+
+    <padding>
+        <Insets top="30" right="30" bottom="30" left="30"/>
+    </padding>
+
+    <Label text="Ensamble Músico Vocal | Iniciar Sesión 🔐"
+           style="-fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;" />
+
+    <Label text="Por favor ingresa con tu nombre de usuario y contraseña"
+           style="-fx-font-size: 14px; -fx-font-weight: normal; -fx-text-fill: #2c3e50;" />
+
+    <TextField fx:id="campoUsuario"
+               promptText="Nombre de usuario"
+               prefWidth="250"/>
+
+    <PasswordField fx:id="campoContrasena"
+                   promptText="Contraseña"
+                   prefWidth="250"/>
+
+    <Button text="Ingresar"
+            onAction="#manejarLogin"
+            style="-fx-background-color: #2980b9; -fx-text-fill: white; -fx-background-radius: 10;" />
+
+    <Button text="Ingresar como Invitado"
+            onAction="#ingresarComoInvitado"
+            style="-fx-background-color: #f39c12; -fx-text-fill: white; -fx-background-radius: 10;" />
+
+    <Button text="Registrarse"
+            onAction="#irARegistro"
+            style="-fx-background-color: #95a5a6; -fx-text-fill: white; -fx-background-radius: 10;" />
+
+    <Label fx:id="mensajeError"
+           textFill="red"
+           visible="false"/>
+</VBox>
