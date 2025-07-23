@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns="http://javafx.com/javafx/21"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="org.example.interf.RegistroController"
+      alignment="CENTER"
+      spacing="15"
+      style="-fx-background-color: #ecf0f1;"
+      prefWidth="400"
+      prefHeight="360">
+
+    <padding>
+        <Insets top="30" right="30" bottom="30" left="30"/>
+    </padding>
+
+    <Label text="📝 Registro de Usuario"
+           style="-fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;" />
+
+    <TextField fx:id="campoUsuario"
+               promptText="Nombre de usuario"
+               prefWidth="250" />
+
+    <PasswordField fx:id="campoContrasena"
+                   promptText="Contraseña"
+                   prefWidth="250" />
+
+    <ComboBox fx:id="comboRol"
+              promptText="Seleccione un rol"
+              prefWidth="250" />
+
+    <Button text="Registrar"
+            onAction="#registrarUsuario"
+            style="-fx-background-color: #27ae60; -fx-text-fill: white; -fx-background-radius: 10;" />
+
+    <Label fx:id="mensajeRegistro"
+           textFill="red"
+           visible="false" />
+    <Button text="Volver"
+            onAction="#volverALogin"
+            style="-fx-background-color: #bdc3c7; -fx-text-fill: black; -fx-background-radius: 10;" />
+</VBox>
