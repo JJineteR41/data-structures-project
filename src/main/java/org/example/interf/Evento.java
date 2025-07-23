@@ -1,8 +1,11 @@
 package org.example.interf;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Evento implements Comparable<Evento>{
+public class Evento implements Comparable<Evento>, Serializable {
+    private static final long serialVersionUID = 1L;
+
     private String evento;
     private Date fecha;
 
@@ -22,5 +25,10 @@ public class Evento implements Comparable<Evento>{
     @Override
     public int compareTo(Evento otro) {
         return this.fecha.compareTo(otro.fecha);
+    }
+
+    @Override
+    public String toString() {
+        return evento + " - " + fecha.toString();
     }
 }
