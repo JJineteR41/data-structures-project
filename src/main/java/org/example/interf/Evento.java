@@ -1,10 +1,7 @@
 package org.example.interf;
-
-import java.io.Serializable;
 import java.util.Date;
 
-public class Evento implements Comparable<Evento>, Serializable {
-    private static final long serialVersionUID = 1L;
+public class Evento implements Comparable<Evento>{
 
     private String evento;
     private Date fecha;

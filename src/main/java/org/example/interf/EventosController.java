@@ -38,6 +38,10 @@ public class EventosController {
 
     @FXML
     public void initialize() {
+        for(Evento evento : PersistenciaEventos.cargarEventos()){
+            arbolEventos.insert(evento);
+        }
+
         columnaNombre.setCellValueFactory(new PropertyValueFactory<>("evento"));
 
         columnaFecha.setCellValueFactory(cellData -> {
@@ -64,6 +68,7 @@ public class EventosController {
             campoNombre.clear();
             campoFecha.clear();
 
+            PersistenciaEventos.guardarEventos(arbolEventos.getAllElementsSorted());
             refrescarTabla();
         } catch (Exception e) {
             e.printStackTrace();
@@ -95,6 +100,7 @@ public class EventosController {
     private void eliminarPrimerEvento() {
         try {
             arbolEventos.deleteFirst();
+            PersistenciaEventos.guardarEventos(arbolEventos.getAllElementsSorted());
             refrescarTabla();
         } catch (Exception e) {
             e.printStackTrace();
